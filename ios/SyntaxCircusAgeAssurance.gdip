@@ -1,0 +1,14 @@
+[config]
+name="SyntaxCircusAgeAssurance"
+binary="SyntaxCircusAgeAssurance.a"
+initialization="sc_age_init"
+deinitialization="sc_age_deinit"
+use_swift_runtime=true
+[dependencies]
+linked=[]
+embedded=[]
+system=["UIKit.framework", "Foundation.framework"]
+capabilities=[]
+files=[]
+linker_flags=["-weak_framework", "DeclaredAgeRange"]
+[plist]
