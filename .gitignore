@@ -1,0 +1,6 @@
+.godot/
+.gradle/
+**/build/
+dist/
+android/local.properties
+__pycache__/
