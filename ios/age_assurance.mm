@@ -35,13 +35,13 @@ public:
         if (active_request == request) { active_request = 0; answer.clear(); }
     }
 };
-static SyntaxCircusAgeAssurance *bridge = nullptr;
+static Ref<SyntaxCircusAgeAssurance> bridge;
 void sc_age_init() {
     ClassDB::register_class<SyntaxCircusAgeAssurance>();
     bridge = memnew(SyntaxCircusAgeAssurance);
-    Engine::get_singleton()->add_singleton(Engine::Singleton("SyntaxCircusAgeAssurance",bridge));
+    Engine::get_singleton()->add_singleton(Engine::Singleton("SyntaxCircusAgeAssurance",bridge.ptr()));
 }
 void sc_age_deinit() {
     { std::lock_guard<std::mutex> lock(mailbox); active_request = 0; answer.clear(); }
-    if (bridge) { Engine::get_singleton()->remove_singleton("SyntaxCircusAgeAssurance"); memdelete(bridge); bridge = nullptr; }
+    if (bridge.is_valid()) { Engine::get_singleton()->remove_singleton("SyntaxCircusAgeAssurance"); bridge.unref(); }
 }
